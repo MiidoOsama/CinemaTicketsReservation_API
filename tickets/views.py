@@ -7,37 +7,6 @@ from rest_framework.response import Response
 from rest_framework import status , filters
 # Create your views here.
 
-#1 without REST framework and no model query (FBV)
-
-def no_rest_no_model(request):
-    guests =[
-        {
-            'id' : 1,
-            "Name" : "Omar",
-            "mobile": 965784320,
-
-        },
-        {
-            'id':2 ,
-            'Name':'Ali',
-            'mobile': 965784321,
-        }
-    ]
-
-    return JsonResponse (guests, safe=False)
-
-
-
-#2 without REST framework from model
-
-def no_rest_from_model(request):
-    data = Guest.objects.all()
-    response = {
-        'guests' : list(data.values('name','mobile'))
-    }
-    return JsonResponse(response)
-
-
 #3 FBV
 #3.1 GET POST
 @api_view(['GET','POST'])
